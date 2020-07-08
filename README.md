@@ -11,5 +11,4 @@ terraform apply
 ```
 
 # ToDo:
-- restrict S3 traffic to inside AWS only
 - possibly add dependencies between the resources
