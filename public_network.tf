@@ -7,9 +7,9 @@ resource "aws_route_table" "public-route" {
 # public routes
 resource "aws_route" "public-internet-route" {
     count = length(var.public_subnets)
-    route_table_id = aws_route_table.public-route[0].id
+    route_table_id = aws_route_table.public-route.*.id[count.index]
     destination_cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.default[0].id
+    gateway_id = aws_internet_gateway.default.*.id[count.index]
 }
 
 # public subnet
