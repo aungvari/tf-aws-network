@@ -7,9 +7,9 @@ resource "aws_route_table" "private-route" {
 # private routes
 resource "aws_route" "private-internet-route" {
     count = length(var.private_subnets)
-    route_table_id = aws_route_table.private-route[0].id
+    route_table_id = aws_route_table.private-route.*.id[count.index]
     destination_cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.nat-gw[0].id
+    nat_gateway_id = aws_nat_gateway.nat-gw.*.id[count.index]
 }
 
 # private subnet
